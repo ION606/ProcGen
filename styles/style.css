@@ -1,0 +1,62 @@
+body {
+    background-color: black;
+    margin: 0;
+}
+
+
+main {
+    margin: 0;
+    text-align: center;
+}
+
+.gridRow {
+    display: flex;
+}
+
+.colBox {
+    background-color: black;
+}
+
+.dispGrid {
+    display: grid;
+    gap: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+.room {
+    background-color: white !important;
+}
+
+.path {
+    background-color: grey;
+}
+
+.edgePath {
+    background-color: blue;
+}
+
+.player {
+    background-color: red !important;
+}
+
+.hidebtn {
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    font-size: 30px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    color: red;
+    border: none;
+    padding: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.hidebtn:hover {
+    opacity: 1;
+}
