@@ -15,11 +15,21 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 	MACROS.seed = Number(localStorage.getItem('seed'));
 	MACROS.numTiles = [Math.floor(window.innerWidth / MACROS.TILE_SIZE), Math.floor(window.innerHeight / MACROS.TILE_SIZE)];
+	const main = document.querySelector('main.dispGrid');
 
 	const r = loadMap();
-	if (r) return;
+	if (r) {
+		const edges = Array.from(document.querySelectorAll('.edgePath'));
+		const edge = edges[getRandInRange(edges.length - 1, 0, false)];
 
-	const main = document.querySelector('main.dispGrid');
+		const y = Array.prototype.indexOf.call(main.children, edge.parentNode),
+		x = Array.prototype.indexOf.call(main.children[y].children, edge); //this does not work, why?
+		
+		const player = new Player(x, y);
+		player.save();
+		return;
+	}
+
 
 	// create the grid
 	for (let i = 0; i < MACROS.numTiles[1]; i++) {
@@ -213,7 +223,7 @@ function generateMap() {
 	}
 
 	const edge = edges[getRandInRange(edges.length - 1, 0, false)];
-	const player = new Player(edge.x, edge.y);
+	const player = new Player(edge.x, edge.y, rooms);
 	player.save();
 
 	saveMap();

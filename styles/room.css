@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+    margin: 0;
+    display: flex;
+    text-align: center;
+}
+
+.scaledup {
+    position: relative;
+}
+
+.side {
+    position: absolute;
+}

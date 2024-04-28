@@ -3,6 +3,7 @@ class Player {
         this.mainEl = document.querySelector('main.dispGrid');
         this.x = startx;
         this.y = starty;
+
         this.mainEl.children[this.y].children[this.x].classList.add("player");
         this.setupEventListeners();
     }
@@ -16,7 +17,17 @@ class Player {
 
     moveTo(newX, newY) {
         const square = this.mainEl.children[newY]?.children[newX];
-        if (square?.classList?.contains('room')) {
+        if (square?.classList?.contains('room') && !square?.classList?.contains('visited')) {
+            const roomTiles = findConnectedRooms(square);
+            roomTiles.map(r => r.classList.add('visited'));
+
+            const edgeTiles = findEdgeRooms(roomTiles);
+
+            // recreate outer box
+            const boundingRect = calculateBoundingRectangle(edgeTiles.map(r => r.room));
+            const scale = calculateScalingFactor(boundingRect);
+            scaleToFitScreen(edgeTiles, scale, boundingRect);
+            
             // for now, just move through it
             this.mainEl.children[this.y].children[this.x].classList.remove('player');
             square.classList.add('player');

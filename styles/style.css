@@ -60,3 +60,17 @@ main {
 .hidebtn:hover {
     opacity: 1;
 }
+
+
+#expandingBox {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.scaledup {
+    
+}
+
+.visited {
+    background-color: grey;
+}
